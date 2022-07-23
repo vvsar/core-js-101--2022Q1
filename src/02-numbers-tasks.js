@@ -230,7 +230,7 @@ function isPrime(num) {
  *   toNumber(42, 0) => 42
  *   toNumber(new Number(42), 0) => 42
  */
- function toNumber(value, def) {
+function toNumber(value, def) {
   // throw new Error('Not implemented');
   if (typeof value === 'number' || value instanceof Number) {
     return value;
