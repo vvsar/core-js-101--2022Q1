@@ -52,7 +52,7 @@ function getCircleCircumference(radius) {
  *  -3, 3  => 0
  */
 function getAverage(value1, value2) {
-  return (value1 + value2) / 2;
+  return (value1 / 2 + value2 / 2);
 }
 
 /**
@@ -228,12 +228,10 @@ function isPrime(num) {
  *   toNumber(new Number(42), 0) => 42
  */
 function toNumber(value, def) {
-  // throw new Error('Not implemented');
   if (typeof value === 'number' || value instanceof Number) {
     return value;
   }
-  // const value1 = +value;
-  if (typeof +value === 'number' && !Number.isNaN(value)) {
+  if (typeof +value === 'number' && !Number.isNaN(+value)) {
     return +value;
   }
   return def;

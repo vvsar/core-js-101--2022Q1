@@ -283,10 +283,14 @@ function getSecondItems(arr) {
  *  [ 'a', 'b', 'c', null ] => [ 'a', 'b','b', 'c','c','c',  null,null,null,null ]
  *  [ 1,2,3,4,5 ] => [ 1, 2,2, 3,3,3, 4,4,4,4, 5,5,5,5,5 ]
  */
-function propagateItemsByPositionIndex(/* arr */) {
-  throw new Error('Not implemented');
+function propagateItemsByPositionIndex(arr) {
+  return arr.reduce((newArr, item, index) => {
+    for (let i = 0; i <= index; i += 1) {
+      newArr.push(item);
+    }
+    return newArr;
+  }, []);
 }
-
 
 /**
  * Returns the 3 largest numbers from the specified array
@@ -345,8 +349,32 @@ function getPositivesCount(arr) {
  *   [ 'nine','eight','nine','eight'] => [ 'eight','eight','nine','nine']
  *   [ 'one','one','one','zero' ]     => [ 'zero','one','one','one' ]
  */
-function sortDigitNamesByNumericOrder(/* arr */) {
-  throw new Error('Not implemented');
+function sortDigitNamesByNumericOrder(arr) {
+  const obj = {
+    zero: '0',
+    one: '1',
+    two: '2',
+    three: '3',
+    four: '4',
+    five: '5',
+    six: '6',
+    seven: '7',
+    eight: '8',
+    nine: '9',
+    0: 'zero',
+    1: 'one',
+    2: 'two',
+    3: 'three',
+    4: 'four',
+    5: 'five',
+    6: 'six',
+    7: 'seven',
+    8: 'eight',
+    9: 'nine',
+  };
+  const arr2 = arr.map((item) => obj[item]);
+  arr2.sort();
+  return arr2.map((item) => obj[item]);
 }
 
 /**
@@ -378,8 +406,11 @@ function getItemsSum(arr) {
  *  [ -1, 'false', null, 0 ] => 2
  *  [ null, undefined, NaN, false, 0, '' ]  => 6
  */
-function getFalsyValuesCount(/* arr */) {
-  throw new Error('Not implemented');
+function getFalsyValuesCount(arr) {
+  return arr.reduce((sum, current) => {
+    if (Boolean(current) === false) return sum + 1;
+    return sum;
+  }, 0);
 }
 
 /**
@@ -483,8 +514,11 @@ function sortCitiesArray(/* arr */) {
  *           [0,0,0,1,0],
  *           [0,0,0,0,1]]
  */
-function getIdentityMatrix(/* n */) {
-  throw new Error('Not implemented');
+function getIdentityMatrix(n) {
+  const arr = new Array(n);
+  arr.fill(new Array(n), 0);
+  const arr2 = arr.map((item) => item.fill(0));
+  return arr2.map((item, index) => item.fill(1, index, index));
 }
 
 /**
@@ -570,22 +604,22 @@ function group(/* array, keySelector, valueSelector */) {
  *   [[1, 2], [3, 4], [5, 6]], (x) => x     =>   [ 1, 2, 3, 4, 5, 6 ]
  *   ['one','two','three'], x=>x.split('')  =>   ['o','n','e','t','w','o','t','h','r','e','e']
  */
-
-// ! No loop !
-function selectMany(arr, childrenSelector) {
-  const newArr = [];
-  function fn(array) {
-    array.forEach((item) => {
-      if (Array.isArray(item)) {
-        fn(item);
-      } else {
-        newArr.push(childrenSelector(item));
-      }
-    });
-  }
-  fn(arr);
-  return newArr;
+function selectMany(/* arr, childrenSelector */) {
+  throw new Error('Not implemented');
 }
+// function selectMany(arr, childrenSelector) {
+//   function fn(array) {
+//     array.forEach((item) => {
+//       if (Array.isArray(item)) {
+//         fn(item);
+//       } else {
+//         newArr.push(childrenSelector(item));
+//       }
+//     });
+//   }
+//   fn(arr);
+//   return newArr;
+// }
 
 
 /**

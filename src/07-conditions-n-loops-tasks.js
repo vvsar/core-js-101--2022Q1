@@ -387,8 +387,8 @@ function isBracketsBalanced(/* str */) {
  *    365, 4  => '11231'
  *    365, 10 => '365'
  */
-function toNaryString(/* num, n */) {
-  throw new Error('Not implemented');
+function toNaryString(num, n) {
+  return num.toString(n);
 }
 
 
@@ -407,6 +407,15 @@ function toNaryString(/* num, n */) {
 function getCommonDirectoryPath(/* pathes */) {
   throw new Error('Not implemented');
 }
+// function getCommonDirectoryPath(pathes) {
+//   let cdp = '';
+//   for (let i = 0; ; i += 1) {
+//     for (let j = 0; j < pathes.length - 2; j += 1) {
+//       if (pathes[j][i] !== pathes[j + 1][i]) return cdp;
+//     }
+//     cdp += pathes[0][i];
+//   }
+// }
 
 
 /**
@@ -462,8 +471,28 @@ function getMatrixProduct(/* m1, m2 */) {
  *    [    ,   ,    ]]
  *
  */
-function evaluateTicTacToePosition(/* position */) {
-  throw new Error('Not implemented');
+function evaluateTicTacToePosition(position) {
+  const firstLine = position[0];
+  const secondLine = position[1];
+  const thirdLine = position[2];
+  if (((firstLine[0] === firstLine[1] && firstLine[1] === firstLine[2])
+    || (firstLine[0] === secondLine[0] && secondLine[0] === thirdLine[0]))
+    && firstLine[0] !== undefined) {
+    return firstLine[0];
+  }
+  if (((thirdLine[2] === thirdLine[1] && thirdLine[1] === thirdLine[0])
+    || (thirdLine[2] === secondLine[2] && secondLine[2] === firstLine[2]))
+    && thirdLine[2] !== undefined) {
+    return thirdLine[2];
+  }
+  if (((secondLine[0] === secondLine[1] && secondLine[1] === secondLine[2])
+    || (firstLine[1] === secondLine[1] && secondLine[1] === thirdLine[1])
+    || (firstLine[0] === secondLine[1] && secondLine[1] === thirdLine[2])
+    || (firstLine[2] === secondLine[1] && secondLine[1] === thirdLine[0]))
+    && secondLine[1] !== undefined) {
+    return secondLine[1];
+  }
+  return undefined;
 }
 
 
