@@ -284,11 +284,12 @@ function getSecondItems(arr) {
  *  [ 1,2,3,4,5 ] => [ 1, 2,2, 3,3,3, 4,4,4,4, 5,5,5,5,5 ]
  */
 function propagateItemsByPositionIndex(arr) {
+  if (arr.length === 0) return arr;
   return arr.reduce((newArr, item, index) => {
-    for (let i = 0; i <= index; i += 1) {
-      newArr.push(item);
-    }
-    return newArr;
+    const itemArr = [];
+    itemArr.length = index + 1;
+    itemArr.fill(item);
+    return newArr.concat(itemArr);
   }, []);
 }
 
@@ -547,8 +548,7 @@ function getIntervalArray(start, end) {
  */
 function distinct(arr) {
   const set = new Set(arr);
-  const newArr = [];
-  set.forEach((value) => newArr.push(value));
+  const newArr = Array.from(set);
   return newArr;
 }
 
