@@ -123,10 +123,23 @@ function timeSpanToString(startDate, endDate) {
  *    Date.UTC(2016,3,5,18, 0) => Math.PI
  *    Date.UTC(2016,3,5,21, 0) => Math.PI/2
  */
-function angleBetweenClockHands(/* date */) {
-  throw new Error('Not implemented');
+// function angleBetweenClockHands(/* date */) {
+//   throw new Error('Not implemented');
+// }
+function angleBetweenClockHands(date) {
+  let h = date.getUTCHours();
+  const m = date.getMinutes();
+  const hoursDegAngle = 0.5 * (h * 60 + m);
+  if (h > 360) {
+    h -= 360;
+  }
+  const minutesDegAngle = 6 * m;
+  let angleDeg = Math.abs(hoursDegAngle - minutesDegAngle);
+  if (angleDeg > 180) {
+    angleDeg = 360 - angleDeg;
+  }
+  return Math.PI * (angleDeg / 180);
 }
-
 
 module.exports = {
   parseDataFromRfc2822,
